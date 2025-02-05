@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  dotted_dashed_line:
+    dependency: "direct main"
+    description:
+      name: dotted_dashed_line
+      sha256: da3678819f4522c982eb256d2bc80d032fd2a3e7b437841ea83987c67c00cda5
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -78,6 +86,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_carousel_widget:
+    dependency: "direct main"
+    description:
+      name: flutter_carousel_widget
+      sha256: "6473e6df04bfafea70efd58251fe5945d5aa8d19461575c1b9d83643f08e0c77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -86,6 +102,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  flutter_lucide:
+    dependency: "direct main"
+    description:
+      name: flutter_lucide
+      sha256: "3b39b730e6145171df8badf983a12c62c4bccfc34dd82ea0cff4a50e78a9294a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
