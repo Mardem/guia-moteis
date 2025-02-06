@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:guia_moteis/design_system/tokens/colors.dart';
 import 'package:guia_moteis/modules/home/presentation/components/home_body.dart';
 
 import '../../../design_system/core/app_bar.dart';
 import '../../../design_system/design_system.dart';
 import '../../../main.dart';
+import 'components/filters/home_filter_card.dart';
+import 'components/filters/home_filter_list.dart';
 import 'components/home_card.dart';
 
 class HomePresentation extends StatelessWidget {
@@ -54,24 +57,18 @@ class HomePresentation extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: AppColors.darkGrey,
-                                width: 1,
+                            margin: const EdgeInsets.only(right: 8),
+                            child: HomeFilterCard(
+                              icon: Icon(
+                                LucideIcons.sliders_horizontal,
+                                size: 16,
+                                color: AppColors.black.withOpacity(.8),
                               ),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  LucideIcons.sliders_horizontal,
-                                  size: 16,
-                                ),
-                                Text('filtros'),
-                              ],
+                              title: 'filtros',
+                              onPressed: () => logger.i('Filtros selecionado'),
                             ),
                           ),
+                          const Expanded(child: HomeFilterList())
                         ],
                       ),
                     )
