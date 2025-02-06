@@ -10,10 +10,14 @@ class HomeCard extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.imageUrl,
+    required this.title,
+    required this.subtitle,
   });
 
   final VoidCallback onPressed;
   final String imageUrl;
+  final String title;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +52,7 @@ class HomeCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'volúpia motel',
+                    title,
                     softWrap: true,
                     overflow: TextOverflow.visible,
                     style: GoogleFonts.openSans(
@@ -60,7 +64,7 @@ class HomeCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'zona suburbana - mineiros',
+                    subtitle,
                     softWrap: true,
                     overflow: TextOverflow.visible,
                     style: GoogleFonts.openSans(

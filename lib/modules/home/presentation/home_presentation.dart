@@ -7,9 +7,10 @@ import 'package:guia_moteis/modules/home/presentation/components/home_body.dart'
 import '../../../design_system/core/app_bar.dart';
 import '../../../design_system/design_system.dart';
 import '../../../main.dart';
-import 'components/filters/home_filter_card.dart';
+import 'components/filters/home_filter_chip.dart';
 import 'components/filters/home_filter_list.dart';
 import 'components/home_card.dart';
+import 'components/place/home_place_card.dart';
 
 class HomePresentation extends StatelessWidget {
   const HomePresentation({super.key});
@@ -41,6 +42,8 @@ class HomePresentation extends StatelessWidget {
                                   imageUrl:
                                       'https://placehold.jp/3d4070/ffffff/300x300.png',
                                   onPressed: () => logger.i('Anúncio $i'),
+                                  title: 'volúpia motel',
+                                  subtitle: 'zona suburbana - mineiros',
                                 );
                               },
                             );
@@ -52,13 +55,22 @@ class HomePresentation extends StatelessWidget {
                     Container(
                       height: 60,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      color: const Color.fromRGBO(248, 249, 251, 1),
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(248, 249, 251, 1),
+                        border: Border(
+                          bottom: BorderSide(
+                            width: 2,
+                            color: AppColors.darkGrey.withOpacity(0.3),
+                          ),
+                        ),
+                      ),
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         children: <Widget>[
                           Container(
                             margin: const EdgeInsets.only(right: 8),
-                            child: HomeFilterCard(
+                            child: HomeFilterChip(
+                              disableSelection: true,
                               icon: Icon(
                                 LucideIcons.sliders_horizontal,
                                 size: 16,
@@ -68,10 +80,11 @@ class HomePresentation extends StatelessWidget {
                               onPressed: () => logger.i('Filtros selecionado'),
                             ),
                           ),
-                          const Expanded(child: HomeFilterList())
+                          const Expanded(child: HomeFilterList()),
                         ],
                       ),
-                    )
+                    ),
+                    HomePlaceCard()
                   ],
                 ),
               ),

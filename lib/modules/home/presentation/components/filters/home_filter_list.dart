@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../main.dart';
 import '../../../data/constants/filters.dart';
-import 'home_filter_card.dart';
+import 'home_filter_chip.dart';
 
 class HomeFilterList extends StatelessWidget {
   const HomeFilterList({super.key});
@@ -18,7 +18,7 @@ class HomeFilterList extends StatelessWidget {
 
           return Container(
             margin: const EdgeInsets.only(right: 8),
-            child: HomeFilterCard(
+            child: HomeFilterChip(
               title: title,
               onPressed: () => logger.i(
                 'Filtro selecionado: $title',
