@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:guia_moteis/core/di/core_di.dart';
+import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 
 import 'modules/home/home.dart';
@@ -10,6 +11,8 @@ final GetIt inject = GetIt.instance;
 final Logger logger = Logger();
 
 void main() {
+  Intl.defaultLocale = 'pt_BR';
+
   startModules();
   runApp(const App());
 }

@@ -72,7 +72,19 @@ class _HomePlaceCardState extends State<HomePlaceCard> {
           const SizedBox(height: 4),
           const HomePlacePriceTile(
             time: '3 horas',
-            hasDiscount: true,
+            value: 88,
+            totalValue: 88,
+          ),
+          const HomePlacePriceTile(
+            time: '6 horas',
+            value: 101,
+            totalValue: 101,
+          ),
+          const HomePlacePriceTile(
+            time: '12 horas',
+            value: 129.58,
+            totalValue: 81.58,
+            discountPrice: 48,
           )
         ],
       ),
