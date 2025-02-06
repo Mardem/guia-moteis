@@ -7,6 +7,7 @@ import '../../../data/constants/category_items.dart';
 import 'home_card_container_details.dart';
 import 'home_place_header.dart';
 import 'items/home_place_items_list.dart';
+import 'price/home_place_price_tile.dart';
 
 class HomePlaceCard extends StatefulWidget {
   const HomePlaceCard({super.key});
@@ -67,10 +68,12 @@ class _HomePlaceCardState extends State<HomePlaceCard> {
               ),
             ),
           ),
-          const HomePlaceItemsList(
-            items: HomeCategoryItems.items,
-            limit: 5,
-          ),
+          const HomePlaceItemsList(items: HomeCategoryItems.items, limit: 5),
+          const SizedBox(height: 4),
+          const HomePlacePriceTile(
+            time: '3 horas',
+            hasDiscount: true,
+          )
         ],
       ),
     );
