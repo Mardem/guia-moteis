@@ -15,6 +15,7 @@ class HomePlaceHeaderComponent extends StatefulWidget {
     this.quantityReviews = 0,
     this.onFavoritePressed,
     this.onReviewPressed,
+    this.rating = 0,
   });
 
   final String logoUrl;
@@ -22,6 +23,7 @@ class HomePlaceHeaderComponent extends StatefulWidget {
   final String address;
 
   final int quantityReviews;
+  final double rating;
 
   final VoidCallback? onFavoritePressed;
   final VoidCallback? onReviewPressed;
@@ -84,7 +86,7 @@ class _HomePlaceHeaderComponentState extends State<HomePlaceHeaderComponent> {
               ),
               Row(
                 children: [
-                  const HomePlaceFavoriteComponent(rating: 4.8),
+                  HomePlaceFavoriteComponent(rating: widget.rating),
                   const SizedBox(width: 8),
                   GestureDetector(
                     onTap: widget.onReviewPressed,

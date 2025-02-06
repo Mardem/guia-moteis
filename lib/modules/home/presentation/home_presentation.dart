@@ -99,6 +99,7 @@ class HomePresentation extends StatelessWidget {
         height: 180,
         showIndicator: true,
         viewportFraction: 1.0,
+        autoPlay: true,
         floatingIndicator: false,
         slideIndicator: CircularSlideIndicator(
           slideIndicatorOptions: SlideIndicatorOptions(

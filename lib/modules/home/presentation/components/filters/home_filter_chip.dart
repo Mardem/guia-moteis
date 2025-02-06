@@ -27,47 +27,51 @@ class _HomeFilterChipState extends State<HomeFilterChip> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: InkWell(
-        onTap: () {
-          if (widget.onPressed != null) widget.onPressed!();
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            if (widget.onPressed != null) widget.onPressed!();
 
-          setState(() {
-            isSelected = !isSelected;
-          });
-        },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
-          curve: Curves.easeInOut,
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: isSelected && !widget.disableSelection
-                ? AppColors.red
-                : Colors.transparent,
-            border: Border.all(
+            setState(() {
+              isSelected = !isSelected;
+            });
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 100),
+            curve: Curves.easeInOut,
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
               color: isSelected && !widget.disableSelection
                   ? AppColors.red
-                  : AppColors.darkGrey,
-              width: 1,
+                  : Colors.transparent,
+              border: Border.all(
+                color: isSelected && !widget.disableSelection
+                    ? AppColors.red
+                    : AppColors.darkGrey,
+                width: 1,
+              ),
             ),
-          ),
-          child: Row(
-            children: [
-              widget.icon ?? const SizedBox.shrink(),
-              const SizedBox(width: 4),
-              Text(
-                widget.title,
-                style: GoogleFonts.openSans(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: isSelected && !widget.disableSelection
-                        ? Colors.white
-                        : AppColors.black.withOpacity(.8),
+            child: Row(
+              children: [
+                widget.icon ?? const SizedBox.shrink(),
+                const SizedBox(width: 4),
+                Text(
+                  widget.title,
+                  style: GoogleFonts.openSans(
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: isSelected && !widget.disableSelection
+                          ? Colors.white
+                          : AppColors.black.withOpacity(.8),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
