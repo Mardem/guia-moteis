@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:guia_moteis/core/di/core_di.dart';
+import 'package:logger/logger.dart';
 
 import 'modules/home/home.dart';
 
 final GetIt inject = GetIt.instance;
+final Logger logger = Logger();
 
 void main() {
   startModules();
@@ -21,6 +24,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
       ),
       home: const HomePresentation(),
     );
