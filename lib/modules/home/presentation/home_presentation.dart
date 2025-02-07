@@ -7,6 +7,8 @@ import 'package:guia_moteis/modules/home/presentation/components/home_map_button
 import '../../../design_system/core/app_bar.dart';
 import '../../../design_system/design_system.dart';
 import '../../../main.dart';
+import '../data/models/remote/mapper/places/home_place.dart';
+import '../data/models/remote/mapper/places/home_place_motel.dart';
 import '../home.dart';
 import 'components/home_card.dart';
 import 'components/home_filters_tile.dart';
@@ -30,6 +32,12 @@ class _HomePresentationState extends State<HomePresentation> {
   void initState() {
     viewmodel.loadItems();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    viewmodel.dispose();
+    super.dispose();
   }
 
   @override
@@ -103,14 +111,21 @@ class _HomePresentationState extends State<HomePresentation> {
                           child: const HomeFiltersTile(),
                         ),
                       ),
-                      SliverList(
-                        delegate: SliverChildListDelegate(
-                          [
-                            HomePlaceCard(),
-                            HomePlaceCard(),
-                            HomePlaceCard(),
-                          ],
-                        ),
+                      StreamBuilder<HomePlace?>(
+                        stream: viewmodel.places,
+                        builder: (
+                          BuildContext context,
+                          AsyncSnapshot<HomePlace?> snapshot,
+                        ) {
+                          return SliverList(
+                            delegate: SliverChildListDelegate(
+                              [
+                                ..._renderPlaces(places: snapshot.data),
+                                const SizedBox(height: 30),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -128,6 +143,16 @@ class _HomePresentationState extends State<HomePresentation> {
         ],
       ),
     );
+  }
+
+  List<Widget> _renderPlaces({required HomePlace? places}) {
+    if (places?.data == null) {
+      return [];
+    }
+
+    return places!.data.moteis.map((HomePlaceMotel item) {
+      return HomePlaceCard(place: item);
+    }).toList();
   }
 
   FlutterCarouselOptions _carouselOptions() => FlutterCarouselOptions(

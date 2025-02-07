@@ -3,6 +3,7 @@ import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../design_system/tokens/colors.dart';
+import '../../../../data/models/remote/mapper/places/home_place_suite_category_item.dart';
 import '../home_card_container_details.dart';
 import 'home_place_items.dart';
 
@@ -13,7 +14,7 @@ class HomePlaceItemsList extends StatelessWidget {
     this.limit = 5,
   }) : assert(limit <= 6);
 
-  final List<Map<String, dynamic>> items;
+  final List<HomePlaceSuiteCategoryItem> items;
   final int limit;
 
   @override
@@ -60,15 +61,15 @@ class HomePlaceItemsList extends StatelessWidget {
   }
 
   List<Widget> _renderListItems({
-    required List<Map<String, dynamic>> items,
+    required List<HomePlaceSuiteCategoryItem> items,
     int limit = 5,
   }) =>
       items
           .take(limit)
           .map(
-            (Map<String, dynamic> item) => HomePlaceItemsComponent(
-              iconUrl: item['icon'],
-              semanticLabel: item['name'],
+            (HomePlaceSuiteCategoryItem item) => HomePlaceItemsComponent(
+              iconUrl: item.icon,
+              semanticLabel: item.name,
             ),
           )
           .toList();

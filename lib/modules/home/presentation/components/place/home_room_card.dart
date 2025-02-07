@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:guia_moteis/modules/home/presentation/components/place/price/home_place_price_tile.dart';
 
-import '../../../data/constants/category_items.dart';
+import '../../../data/models/remote/mapper/places/home_place_suite.dart';
 import 'home_card_container_details.dart';
 import 'items/home_place_items_list.dart';
 
 class HomeRoomCard extends StatelessWidget {
   const HomeRoomCard({
     super.key,
-    required this.heroImageUrl,
+    required this.placeSuite,
   });
 
-  final String heroImageUrl;
+  final HomePlaceSuite placeSuite;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,15 @@ class HomeRoomCard extends StatelessWidget {
                 children: <Widget>[
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: CachedNetworkImage(imageUrl: heroImageUrl),
+                    child: CachedNetworkImage(
+                      imageUrl: placeSuite.photos.first,
+                    ),
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      'suíte imperial',
+                      placeSuite.name,
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.openSans(
                         textStyle: const TextStyle(
                           fontWeight: FontWeight.w400,
@@ -48,10 +51,7 @@ class HomeRoomCard extends StatelessWidget {
               ),
             ),
           ),
-          const HomePlaceItemsList(
-            items: HomeCategoryItems.items,
-            limit: 5,
-          ),
+          HomePlaceItemsList(items: placeSuite.itemsCategory, limit: 5),
           const SizedBox(height: 4),
           const HomePlacePriceTile(
             time: '3 horas',
