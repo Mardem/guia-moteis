@@ -1,16 +1,26 @@
-# guia_moteis
 
-A new Flutter project.
+# Teste técnico Guia de Motéis GO
+Case realizado no processo seletivo. O mesmo contém algumas ferramentas que serão listadas abaixo:
 
-## Getting Started
+- Layout
+- Integraçãom com a API
+- Skeleton de components
+- Arquitetura MVVM
+- Gerenciamento de estado com RxDart
+- Testes unitários (camada de data)
+- Micro design system
 
-This project is a starting point for a Flutter application.
+## 💻 Especificações
 
-A few resources to get you started if this is your first Flutter project:
+Antes de começar, verifique se você atendeu aos seguintes requisitos:
+* Você instalou a versão mais recente do `Flutter (3.22.2)`
+* Você instalou a versão mais recente do `Dart (3.4.3)`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 Testando o projeto
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para testar o projeto, siga estas etapas:
+
+Linux, macOS e Windows:
+```  
+git@github.com:Mardem/guia-moteis.git && (cd guia-moteis && flutter pub get)  
+```  
