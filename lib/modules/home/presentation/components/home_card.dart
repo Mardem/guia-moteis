@@ -89,6 +89,7 @@ class HomeCard extends StatelessWidget {
                           style: GoogleFonts.openSans(
                             textStyle: const TextStyle(
                               fontWeight: FontWeight.bold,
+                              fontSize: 18,
                               color: Color.fromRGBO(80, 80, 80, 1.0),
                               decoration: TextDecoration.underline,
                             ),

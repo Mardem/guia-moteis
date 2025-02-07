@@ -3,6 +3,7 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:guia_moteis/design_system/tokens/colors.dart';
 import 'package:guia_moteis/modules/home/presentation/components/home_body.dart';
+import 'package:guia_moteis/modules/home/presentation/components/home_map_button.dart';
 
 import '../../../design_system/core/app_bar.dart';
 import '../../../design_system/design_system.dart';
@@ -84,12 +85,21 @@ class HomePresentation extends StatelessWidget {
                         ],
                       ),
                     ),
-                    HomePlaceCard()
+                    HomePlaceCard(),
+                    HomePlaceCard(),
+                    HomePlaceCard(),
                   ],
                 ),
               ),
             ),
-          )
+          ),
+          Positioned(
+            bottom: 20,
+            width: MediaQuery.of(context).size.width,
+            child: HomeMapButton(
+              onPressed: () => logger.i('Mapa selecionado'),
+            ),
+          ),
         ],
       ),
     );
