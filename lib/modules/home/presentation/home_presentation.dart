@@ -7,13 +7,30 @@ import 'package:guia_moteis/modules/home/presentation/components/home_map_button
 import '../../../design_system/core/app_bar.dart';
 import '../../../design_system/design_system.dart';
 import '../../../main.dart';
+import '../home.dart';
 import 'components/home_card.dart';
 import 'components/home_filters_tile.dart';
 import 'components/place/home_place_card.dart';
+import 'shimmers/home_carousel_shimmer.dart';
+import 'shimmers/home_filter_shimmer.dart';
+import 'shimmers/home_place_shimmer.dart';
 import 'utils/sliver_app_bar.dart';
 
-class HomePresentation extends StatelessWidget {
+class HomePresentation extends StatefulWidget {
   const HomePresentation({super.key});
+
+  @override
+  State<HomePresentation> createState() => _HomePresentationState();
+}
+
+class _HomePresentationState extends State<HomePresentation> {
+  final HomeViewmodel viewmodel = inject<HomeViewmodel>();
+
+  @override
+  void initState() {
+    viewmodel.loadItems();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,63 +38,85 @@ class HomePresentation extends StatelessWidget {
       body: Stack(
         children: [
           const Positioned(top: 0, child: MainAppBar()),
-          Positioned(
-            top: 160,
-            child: HomeBody(
-              child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 4),
-                        SizedBox(
-                          height: 200,
-                          child: Padding(
-                            padding: const EdgeInsets.all(4),
-                            child: FlutterCarousel(
-                              options: _carouselOptions(),
-                              items: [1, 2, 3, 4, 5].map((i) {
-                                return Builder(
-                                  builder: (BuildContext context) {
-                                    return HomeCard(
-                                      imageUrl:
-                                          'https://placehold.jp/3d4070/ffffff/300x300.png',
-                                      onPressed: () => logger.i('Anúncio $i'),
-                                      title: 'volúpia motel',
-                                      subtitle: 'zona suburbana - mineiros',
+          StreamBuilder<bool>(
+            stream: viewmodel.loading,
+            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              bool isLoading = snapshot.data ?? true;
+              if (isLoading) {
+                return const Positioned(
+                  top: 180,
+                  child: Column(
+                    children: [
+                      HomeCarouselShimmer(),
+                      SizedBox(height: 16),
+                      HomeFilterShimmer(),
+                      SizedBox(height: 16),
+                      HomePlaceShimmer(),
+                    ],
+                  ),
+                );
+              }
+
+              return Positioned(
+                top: 160,
+                child: HomeBody(
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 4),
+                            SizedBox(
+                              height: 200,
+                              child: Padding(
+                                padding: const EdgeInsets.all(4),
+                                child: FlutterCarousel(
+                                  options: _carouselOptions(),
+                                  items: [1, 2, 3, 4, 5].map((i) {
+                                    return Builder(
+                                      builder: (BuildContext context) {
+                                        return HomeCard(
+                                          imageUrl:
+                                              'https://placehold.jp/3d4070/ffffff/300x300.png',
+                                          onPressed: () =>
+                                              logger.i('Anúncio $i'),
+                                          title: 'volúpia motel',
+                                          subtitle: 'zona suburbana - mineiros',
+                                        );
+                                      },
                                     );
-                                  },
-                                );
-                              }).toList(),
+                                  }).toList(),
+                                ),
+                              ),
                             ),
-                          ),
+                            const SizedBox(height: 8),
+                          ],
                         ),
-                        const SizedBox(height: 8),
-                      ],
-                    ),
+                      ),
+                      SliverPersistentHeader(
+                        pinned: true,
+                        floating: false,
+                        delegate: SliverAppBarDelegate(
+                          minHeight: 60,
+                          maxHeight: 60,
+                          child: const HomeFiltersTile(),
+                        ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            HomePlaceCard(),
+                            HomePlaceCard(),
+                            HomePlaceCard(),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  SliverPersistentHeader(
-                    pinned: true,
-                    floating: false,
-                    delegate: SliverAppBarDelegate(
-                      minHeight: 60,
-                      maxHeight: 60,
-                      child: const HomeFiltersTile(),
-                    ),
-                  ),
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      [
-                        HomePlaceCard(),
-                        HomePlaceCard(),
-                        HomePlaceCard(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           ),
           Positioned(
             bottom: 20,
