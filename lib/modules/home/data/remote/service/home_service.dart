@@ -15,7 +15,9 @@ class HomeServiceImpl implements HomeService {
       final Response<Map<String, dynamic>> response = await _client.get(
         '/places',
       );
-      final HomePlace places = HomePlace.fromJson(response.data!);
+
+      var content = response.data!;
+      final HomePlace places = HomePlace.fromJson(content);
 
       return AppResponse(
         success: places.success,
