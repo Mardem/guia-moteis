@@ -30,12 +30,8 @@ class _HomePlaceCardState extends State<HomePlaceCard> {
             address: 'zona suburbana - mineiros',
             quantityReviews: 1,
             rating: 4.8,
-            onFavoritePressed: () {
-              logger.i('Favorito selecionado');
-            },
-            onReviewPressed: () {
-              logger.i('Review selecionado');
-            },
+            onFavoritePressed: () => logger.i('Favorito selecionado'),
+            onReviewPressed: () => logger.i('Review selecionado'),
           ),
           SizedBox(
             child: SingleChildScrollView(

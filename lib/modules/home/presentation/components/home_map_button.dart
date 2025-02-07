@@ -25,7 +25,7 @@ class HomeMapButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               boxShadow: const <BoxShadow>[
                 BoxShadow(
-                  color: Color.fromRGBO(141, 141, 141, 0.7),
+                  color: Color.fromRGBO(141, 141, 141, 0.6),
                   blurRadius: 10,
                   spreadRadius: 0.3,
                   offset: Offset(0, 2),
