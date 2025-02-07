@@ -12,7 +12,28 @@ abstract interface class HttpClient {
 }
 
 class HttpClientImpl implements HttpClient {
-  HttpClientImpl() : _client = Dio();
+  HttpClientImpl() : _client = Dio() {
+    _client.interceptors.add(
+      InterceptorsWrapper(onRequest: (
+        RequestOptions options,
+        RequestInterceptorHandler? handler,
+      ) async {
+        options.baseUrl = UrlConstants.baseUrl;
+
+        handler?.next(options);
+      }, onResponse: (
+        Response<dynamic> response,
+        ResponseInterceptorHandler? handler,
+      ) {
+        handler?.next(response);
+      }, onError: (
+        DioException error,
+        ErrorInterceptorHandler? handler,
+      ) {
+        handler?.next(error);
+      }),
+    );
+  }
 
   final Dio _client;
 

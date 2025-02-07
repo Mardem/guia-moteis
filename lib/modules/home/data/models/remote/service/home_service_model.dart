@@ -1,0 +1,6 @@
+import '../mapper/places/home_place.dart';
+import '../response/app_response.dart';
+
+abstract interface class HomeService {
+  Future<AppResponse<HomePlace?>> getPlaces();
+}
