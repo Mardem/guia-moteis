@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:guia_moteis/modules/home/presentation/components/place/price/home_place_price_tile.dart';
 
 import '../../../data/models/remote/mapper/places/home_place_suite.dart';
+import '../../../data/models/remote/mapper/places/home_place_suite_period.dart';
 import 'home_card_container_details.dart';
 import 'items/home_place_items_list.dart';
 
@@ -53,18 +54,20 @@ class HomeRoomCard extends StatelessWidget {
           ),
           HomePlaceItemsList(items: placeSuite.itemsCategory, limit: 5),
           const SizedBox(height: 4),
-          const HomePlacePriceTile(
-            time: '3 horas',
-            value: 88,
-            totalValue: 88,
-          ),
-          const HomePlacePriceTile(
-            time: '6 horas',
-            value: 101,
-            totalValue: 101,
-          ),
+          ..._renderPriceTiles(),
         ],
       ),
     );
   }
+
+  List<Widget> _renderPriceTiles() => placeSuite.periods
+      .map(
+        (HomePlaceSuitePeriod item) => HomePlacePriceTile(
+          time: item.formattedTime,
+          value: item.price.toDouble(),
+          totalValue: item.totalPrice.toDouble(),
+          discountPrice: item.discount?.discount.toDouble(),
+        ),
+      )
+      .toList();
 }

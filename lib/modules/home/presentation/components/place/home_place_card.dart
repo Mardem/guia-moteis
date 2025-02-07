@@ -19,13 +19,10 @@ class HomePlaceCard extends StatefulWidget {
 }
 
 class _HomePlaceCardState extends State<HomePlaceCard> {
-  final String img =
-      'https://cdn.guiademoteis.com.br/imagens/suites/big/3148_big_9827_1.jpg';
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       child: Column(
         children: [
           HomePlaceHeaderComponent(
