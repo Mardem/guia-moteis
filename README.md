@@ -22,5 +22,9 @@ Para testar o projeto, siga estas etapas:
 
 Linux, macOS e Windows:
 ```  
-git@github.com:Mardem/guia-moteis.git && (cd guia-moteis && flutter pub get)  
+git@github.com:Mardem/guia-moteis.git && (cd guia-moteis && flutter pub get) 
 ```  
+Para compilar os arquivos de deserialização use:
+```
+dart run build_runner build --delete-conflicting-outputs
+```
